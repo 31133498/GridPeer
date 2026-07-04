@@ -647,7 +647,7 @@ footer{
     Usage: position:absolute, object-fit:cover, fill the entire right half of the hero section.
     Aspect: landscape, minimum 1200x800px
     -->
-    <img src="images/hero.png" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:inherit;">
+    <img src="images/hero.png" style="position:absolute;top:64px;left:0;right:0;bottom:0;width:100%;height:calc(100% - 64px);object-fit:cover;border-radius:inherit;">
   </div>
 </section>
 
@@ -659,15 +659,15 @@ footer{
       <div class="s2-headline sg">Nigeria does not have an energy shortage. It has an access shortage.</div>
       <div class="stat-stack">
         <div class="stat-item">
-          <div class="stat-big sg">500K<span style="color:rgba(255,255,255,.3);font-size:.5em">+</span></div>
+          <div class="stat-big sg"><span data-stat="500" data-suffix="K">0</span><span style="color:rgba(255,255,255,.3);font-size:.5em">+</span></div>
           <div class="stat-desc">Solar systems installed across Lagos, Abuja, and Port Harcourt. Generating more electricity than their owners can use with nowhere for the surplus to go.</div>
         </div>
         <div class="stat-item">
-          <div class="stat-big sg">9M</div>
+          <div class="stat-big sg"><span data-stat="9" data-suffix="M">0</span></div>
           <div class="stat-desc">Active generators running next door. Nigeria burns 29 million metric tonnes of CO2 annually from generators alone, for electricity that already exists on nearby rooftops.</div>
         </div>
         <div class="stat-item">
-          <div class="stat-big sg">50<span style="font-size:.6em;color:rgba(233,165,32,.6)">%</span></div>
+          <div class="stat-big sg"><span data-stat="50" data-suffix="">0</span><span style="font-size:.6em;color:rgba(233,165,32,.6)">%</span></div>
           <div class="stat-desc">Of solar generation disappears as wasted heat when the battery hits capacity. Clean, paid-for electricity with no buyer and no channel.</div>
         </div>
       </div>
@@ -1232,6 +1232,27 @@ var countObs = new IntersectionObserver(function(entries){
   });
 },{threshold:0.5});
 document.querySelectorAll('[data-count]').forEach(function(el){ countObs.observe(el); });
+
+/* ---- STAT COUNTERS (s2) ---- */
+var statObs = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(!e.isIntersecting) return;
+    var el = e.target;
+    var target = parseInt(el.dataset.stat);
+    var suffix = el.dataset.suffix || '';
+    var duration = 1400;
+    var steps = 60;
+    var step = target / steps;
+    var cur = 0;
+    var t = setInterval(function(){
+      cur = Math.min(cur + step, target);
+      el.textContent = Math.round(cur) + suffix;
+      if(cur >= target) clearInterval(t);
+    }, duration / steps);
+    statObs.unobserve(el);
+  });
+},{threshold:0.5});
+document.querySelectorAll('[data-stat]').forEach(function(el){ statObs.observe(el); });
 
 /* ---- HUB LIGHTBOX ---- */
 function openHubLightbox(){document.getElementById('hub-lightbox').classList.add('open');document.body.style.overflow='hidden';}
