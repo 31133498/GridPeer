@@ -287,120 +287,116 @@ h1 .accent{color:var(--gold);}
   transition:all .2s;
 }
 .demo-tab.on{background:rgba(255,255,255,.1);color:#fff;}
-/* Desktop app mockup */
+/* Desktop app mockup — WHITE THEME */
 .app-shell{
   margin:0 4vw 40px;
-  background:#1A2D42;border:1px solid rgba(255,255,255,.1);
+  background:#fff;border:1px solid var(--border);
   border-radius:20px;overflow:hidden;
-  box-shadow:0 40px 80px rgba(0,0,0,.3);
+  box-shadow:0 24px 72px rgba(0,0,0,.22);
 }
 .app-topbar{
-  height:44px;background:#0D1B2A;
+  height:44px;background:#F5F5F5;
   display:flex;align-items:center;padding:0 16px;gap:8px;
-  border-bottom:1px solid rgba(255,255,255,.08);
+  border-bottom:1px solid var(--border);
 }
 .tb-dot{width:12px;height:12px;border-radius:50%;}
 .tb-dot.r{background:#FF5F57;}
 .tb-dot.y{background:#FEBC2E;}
 .tb-dot.g{background:#28C840;}
 .tb-url{
-  flex:1;background:rgba(255,255,255,.06);border-radius:6px;
+  flex:1;background:var(--off);border-radius:6px;border:1px solid var(--border);
   margin:0 12px;height:26px;display:flex;align-items:center;padding:0 12px;
-  font-family:'Space Mono',monospace;font-size:11px;color:rgba(255,255,255,.3);
+  font-family:'Space Mono',monospace;font-size:11px;color:var(--faint);
 }
 .app-body{display:flex;min-height:520px;}
 /* Sidebar */
 .app-sidebar{
-  width:220px;background:#0F2135;border-right:1px solid rgba(255,255,255,.07);
+  width:220px;background:var(--off);border-right:1px solid var(--border);
   padding:24px 0;flex-shrink:0;
 }
 .app-sb-logo{
   padding:0 20px 24px;font-family:'Space Grotesk',sans-serif;
-  font-size:16px;font-weight:700;color:#fff;
-  border-bottom:1px solid rgba(255,255,255,.07);margin-bottom:16px;
+  font-size:16px;font-weight:700;color:var(--navy);
+  border-bottom:1px solid var(--border);margin-bottom:16px;
   display:flex;align-items:center;gap:8px;
 }
 .app-sb-logo span{color:var(--gold);}
 .app-sb-logo-mark{
-  width:26px;height:26px;background:var(--gold);border-radius:6px;
+  width:26px;height:26px;background:var(--navy);border-radius:6px;
   display:flex;align-items:center;justify-content:center;
 }
-.app-sb-logo-mark svg{width:14px;height:14px;stroke:var(--navy);stroke-width:2.5;fill:none;}
+.app-sb-logo-mark svg{width:14px;height:14px;stroke:#fff;stroke-width:2.5;fill:none;}
 .sb-item{
   display:flex;align-items:center;gap:10px;
   padding:10px 20px;font-size:13px;font-weight:500;
-  color:rgba(255,255,255,.4);cursor:pointer;transition:all .15s;
+  color:var(--dim);cursor:pointer;transition:all .15s;
   border-left:2px solid transparent;
 }
-.sb-item:hover{color:rgba(255,255,255,.8);background:rgba(255,255,255,.04);}
-.sb-item.active{color:#fff;border-left-color:var(--gold);background:rgba(233,165,32,.08);}
+.sb-item:hover{color:var(--navy);background:var(--light);}
+.sb-item.active{color:var(--navy);border-left-color:var(--gold);background:var(--gold-bg);}
 .sb-item svg{width:16px;height:16px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
-.sb-section{padding:16px 20px 8px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;color:rgba(255,255,255,.2);text-transform:uppercase;}
+.sb-section{padding:16px 20px 8px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--faint);text-transform:uppercase;}
 /* Main content */
-.app-main{flex:1;padding:28px 32px;overflow:hidden;}
+.app-main{flex:1;padding:28px 32px;overflow:hidden;background:#fff;}
 .app-view{display:none;}
 .app-view.on{display:block;}
-.app-greeting{font-size:13px;color:rgba(255,255,255,.4);margin-bottom:4px;}
-.app-title{font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:700;color:#fff;margin-bottom:24px;}
+.app-greeting{font-size:13px;color:var(--dim);margin-bottom:4px;}
+.app-title{font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:700;color:var(--navy);margin-bottom:24px;}
 .metrics-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px;}
-.metric-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:20px;}
-.metric-label{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:10px;}
-.metric-val{font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:700;color:#fff;letter-spacing:-1px;margin-bottom:6px;}
-.metric-val.gold{color:var(--gold);}
+.metric-card{background:var(--off);border:1px solid var(--border);border-radius:12px;padding:20px;}
+.metric-label{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--faint);margin-bottom:10px;}
+.metric-val{font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:700;color:var(--navy);letter-spacing:-1px;margin-bottom:6px;}
+.metric-val.gold{color:var(--gold-d);}
 .metric-val.green{color:var(--green);}
-.metric-sub{font-size:12px;color:rgba(255,255,255,.3);}
-.bat-bar{height:5px;background:rgba(255,255,255,.1);border-radius:3px;margin-top:8px;overflow:hidden;}
+.metric-sub{font-size:12px;color:var(--dim);}
+.bat-bar{height:6px;background:var(--light);border-radius:3px;margin-top:10px;overflow:hidden;}
 .bat-fill{height:100%;background:var(--green);border-radius:3px;transition:width 1.2s ease;}
 /* Connections table */
-.app-section-label{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35);margin:20px 0 12px;}
-.conn-table{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;overflow:hidden;}
+.app-section-label{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--faint);margin:20px 0 12px;}
+.conn-table{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;}
 .ct-head,.ct-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 80px;padding:12px 16px;font-size:13px;align-items:center;}
-.ct-head{border-bottom:1px solid rgba(255,255,255,.07);color:rgba(255,255,255,.3);font-weight:600;font-size:11px;letter-spacing:1px;}
-.ct-row{border-bottom:1px solid rgba(255,255,255,.05);color:rgba(255,255,255,.8);}
+.ct-head{border-bottom:1px solid var(--border);color:var(--faint);font-weight:700;font-size:11px;letter-spacing:1px;}
+.ct-row{border-bottom:1px solid var(--light);color:var(--text);}
 .ct-row:last-child{border:none;}
-.ct-name{font-weight:600;}
-.ct-online{
-  display:flex;align-items:center;gap:6px;font-size:12px;
-  font-weight:600;color:var(--green);
-}
+.ct-name{font-weight:600;color:var(--navy);}
+.ct-online{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--green);}
 .ct-online .status-pulse{width:6px;height:6px;}
 /* Recent activity */
 .activity-list{display:flex;flex-direction:column;gap:0;}
-.act-item{
-  display:flex;align-items:center;gap:16px;padding:12px 0;
-  border-bottom:1px solid rgba(255,255,255,.06);
-}
+.act-item{display:flex;align-items:center;gap:16px;padding:12px 0;border-bottom:1px solid var(--light);}
 .act-item:last-child{border:none;}
-.act-ico{width:34px;height:34px;border-radius:9px;background:rgba(233,165,32,.12);
-  border:1px solid rgba(233,165,32,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.act-ico svg{width:16px;height:16px;stroke:var(--gold);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;}
-.act-desc{flex:1;font-size:13px;color:rgba(255,255,255,.6);}
-.act-desc strong{color:#fff;display:block;font-size:13px;}
-.act-time{font-size:12px;color:rgba(255,255,255,.3);font-family:'Space Mono',monospace;}
+.act-ico{width:36px;height:36px;border-radius:10px;background:var(--gold-bg);
+  border:1px solid var(--gold-border);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.act-ico svg{width:16px;height:16px;stroke:var(--gold-d);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+.act-ico.shield svg{stroke:var(--green);}
+.act-ico.shield{background:rgba(22,163,74,.08);border-color:rgba(22,163,74,.2);}
+.act-desc{flex:1;font-size:13px;color:var(--mid);}
+.act-desc strong{color:var(--navy);display:block;font-size:13px;}
+.act-time{font-size:11px;color:var(--faint);font-family:'Space Mono',monospace;}
 /* Seeker view */
 .power-card{
-  background:rgba(22,163,74,.08);border:1px solid rgba(22,163,74,.2);
-  border-radius:14px;padding:28px;margin-bottom:20px;
-  display:flex;align-items:center;gap:24px;
+  background:rgba(22,163,74,.06);border:1px solid rgba(22,163,74,.2);
+  border-radius:14px;padding:24px;margin-bottom:20px;
+  display:flex;align-items:center;gap:20px;
 }
 .power-status-ico{
-  width:60px;height:60px;border-radius:50%;
-  background:rgba(22,163,74,.12);border:2px solid rgba(22,163,74,.3);
+  width:56px;height:56px;border-radius:50%;
+  background:rgba(22,163,74,.1);border:2px solid rgba(22,163,74,.25);
   display:flex;align-items:center;justify-content:center;flex-shrink:0;
 }
-.power-status-ico svg{width:28px;height:28px;stroke:var(--green);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+.power-status-ico svg{width:26px;height:26px;stroke:var(--green);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;}
 .power-label{font-size:14px;font-weight:700;color:var(--green);margin-bottom:4px;display:flex;align-items:center;gap:8px;}
-.power-source{font-size:13px;color:rgba(255,255,255,.4);}
+.power-source{font-size:13px;color:var(--mid);}
 .topup-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px;}
 .tu-btn{
-  padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,.1);
-  background:rgba(255,255,255,.05);cursor:pointer;text-align:center;
+  padding:16px;border-radius:12px;border:1px solid var(--border);
+  background:#fff;cursor:pointer;text-align:center;
   transition:all .15s;
 }
-.tu-btn:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);}
+.tu-btn:hover{background:var(--off);border-color:var(--navy);transform:translateY(-1px);}
 .tu-btn svg{width:20px;height:20px;fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.8;margin:0 auto 8px;display:block;}
-.tu-btn .tu-label{font-size:13px;font-weight:600;color:#fff;}
-.tu-btn .tu-sub{font-size:11px;color:rgba(255,255,255,.35);margin-top:2px;}
+.tu-btn .tu-label{font-size:13px;font-weight:600;color:var(--navy);}
+.tu-btn .tu-sub{font-size:11px;color:var(--dim);margin-top:2px;}
 
 /* ====================================
    S5 HARDWARE
@@ -888,20 +884,20 @@ p,.s3-head,.hw-head,.s2-headline,.hw-sub,.s3-body{overflow-wrap:break-word;word-
         </div>
         <div class="sb-section">Finances</div>
         <div class="sb-item">
-          <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          <svg viewBox="0 0 24 24"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
           Payments
         </div>
         <div class="sb-item">
-          <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          <svg viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
           Analytics
         </div>
         <div class="sb-section">System</div>
         <div class="sb-item">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+          <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
           Hub Status
         </div>
         <div class="sb-item">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v1M12 21v1M4.22 4.22l.71.71M19.07 19.07l.71.71M2 12h1M21 12h1M4.22 19.78l.71-.71M19.07 4.93l.71-.71"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
           Settings
         </div>
       </div>
@@ -953,17 +949,17 @@ p,.s3-head,.hw-head,.s2-headline,.hw-sub,.s3-body{overflow-wrap:break-word;word-
           <div class="app-section-label sm" style="margin-top:20px;">Recent Activity</div>
           <div class="activity-list">
             <div class="act-item">
-              <div class="act-ico"><svg viewBox="0 0 24 24"><path d="M20 12V22H4V12"/><path d="M22 7H2v5h20V7z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg></div>
-              <div class="act-desc"><strong>Emeka Okafor topped up 1,000</strong>via WhatsApp wallet</div>
+              <div class="act-ico"><svg viewBox="0 0 24 24"><rect width="20" height="12" x="2" y="6" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/></svg></div>
+              <div class="act-desc"><strong>Emeka Okafor topped up ₦1,000</strong>via WhatsApp wallet</div>
               <div class="act-time">11:24</div>
             </div>
             <div class="act-item">
-              <div class="act-ico"><svg viewBox="0 0 24 24"><path d="M20 12V22H4V12"/><path d="M22 7H2v5h20V7z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg></div>
-              <div class="act-desc"><strong>Chioma Adeyemi topped up 500</strong>via USSD</div>
+              <div class="act-ico"><svg viewBox="0 0 24 24"><rect width="20" height="12" x="2" y="6" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/></svg></div>
+              <div class="act-desc"><strong>Chioma Adeyemi topped up ₦500</strong>via USSD</div>
               <div class="act-time">09:45</div>
             </div>
             <div class="act-item">
-              <div class="act-ico"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div>
+              <div class="act-ico shield"><svg viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></div>
               <div class="act-desc"><strong>Hub safety check passed</strong>Temperature normal on all lines</div>
               <div class="act-time">08:00</div>
             </div>
@@ -1002,17 +998,17 @@ p,.s3-head,.hw-head,.s2-headline,.hw-sub,.s3-body{overflow-wrap:break-word;word-
           <div class="app-section-label sm">Top Up Your Wallet</div>
           <div class="topup-grid">
             <div class="tu-btn">
-              <svg viewBox="0 0 24 24" stroke="var(--green)"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              <svg viewBox="0 0 24 24" stroke="var(--green)"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
               <div class="tu-label">WhatsApp</div>
               <div class="tu-sub">Any phone</div>
             </div>
             <div class="tu-btn">
-              <svg viewBox="0 0 24 24" stroke="var(--gold)"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.07 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
+              <svg viewBox="0 0 24 24" stroke="var(--gold-d)"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.07 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
               <div class="tu-label">USSD *737#</div>
               <div class="tu-sub">No data needed</div>
             </div>
             <div class="tu-btn">
-              <svg viewBox="0 0 24 24" stroke="#fff"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+              <svg viewBox="0 0 24 24" stroke="var(--navy)"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
               <div class="tu-label">Bank Transfer</div>
               <div class="tu-sub">Any Nigerian bank</div>
             </div>
@@ -1228,7 +1224,7 @@ p,.s3-head,.hw-head,.s2-headline,.hw-sub,.s3-body{overflow-wrap:break-word;word-
     Grid<span>Peer</span>
   </div>
   <div class="ft-right">
-    Built in Lagos, Nigeria · University of Lagos · © 2025<br>
+    Built in Lagos, Nigeria · University of Lagos · © 2026<br>
     Electricity Act 2023 Compliant · NEMSA Certified Installation · NERC Registered
   </div>
 </footer>
