@@ -516,6 +516,16 @@ footer{
 .reveal.in{opacity:1;transform:translateY(0);}
 .d1{transition-delay:.1s;} .d2{transition-delay:.2s;} .d3{transition-delay:.3s;} .d4{transition-delay:.4s;}
 
+/* ---- TYPEWRITER ---- */
+#hero-h1.typing::after{content:'|';color:var(--gold);animation:blink .7s step-end infinite;font-weight:300;margin-left:2px;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+
+/* ---- LTV ROW ---- */
+.ltv-row{padding:0 5vw 60px;display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
+
+/* ---- OVERFLOW GUARD ---- */
+p,.s3-head,.hw-head,.s2-headline,.hw-sub,.s3-body{overflow-wrap:break-word;word-break:break-word;}
+
 /* ---- HUB IMAGE CLICKABLE ---- */
 .hub-wrap{position:relative;cursor:zoom-in;border-radius:14px;overflow:hidden;}
 .hub-overlay{position:absolute;inset:0;background:rgba(13,27,42,0);transition:background .3s;}
@@ -576,6 +586,8 @@ footer{
   /* SOLUTION */
   .s3-inner{grid-template-columns:1fr;gap:40px;padding:60px 5vw;}
   .conn-diagram{overflow-x:auto;}
+  .cd-row{min-width:520px;}
+  .s3-right{min-width:0;}
 
   /* DEMO */
   #s4{border-left:none;border-right:none;}
@@ -598,6 +610,7 @@ footer{
   /* IMPACT */
   .s6-inner{grid-template-columns:1fr;gap:40px;padding:60px 5vw;}
   .impact-numbers{grid-template-columns:1fr 1fr;}
+  .ltv-row{grid-template-columns:1fr;gap:8px;padding:0 5vw 40px;}
 
   /* TEAM */
   .team-grid{grid-template-columns:1fr 1fr;gap:20px;}
@@ -667,8 +680,8 @@ footer{
 <section id="s1">
   <div class="hero-left">
     <div class="hero-eyebrow sg">Lagos, Nigeria</div>
-    <h1>Switch off<br>your <span class="accent">generator.</span><br>For good.</h1>
-    <p class="hero-sub">GridPeer is Nigeria's solar adoption infrastructure. We meter, finance, and register shared solar — turning wasted rooftop capacity into host income, affordable power for neighbours, and a financed path to ownership for households that could never afford solar. Every cluster we activate is one more generator switched off permanently.</p>
+    <h1 id="hero-h1" class="typing"></h1>
+    <p class="hero-sub">GridPeer is Nigeria's solar adoption infrastructure. We meter, finance, and register shared solar, turning wasted rooftop capacity into host income, affordable power for neighbours, and a financed path to ownership for households that could never afford solar. Every cluster we activate is one more generator switched off permanently.</p>
     <div class="btn-row">
       <a href="#s4" class="btn-dark">
         See the Demo
@@ -690,7 +703,7 @@ footer{
         <div class="proof-ico">
           <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="1"/><path d="M3 11l2-7h14l2 7"/><line x1="12" y1="11" x2="12" y2="22"/><line x1="3" y1="16" x2="21" y2="16"/></svg>
         </div>
-        Metering, financing, and ownership in one platform — not just peer-to-peer power sharing.
+        Metering, financing, and ownership in one platform. Not just peer-to-peer power sharing.
       </div>
       <div class="proof-item">
         <div class="proof-ico">
@@ -803,7 +816,7 @@ footer{
     <div class="s3-right reveal d2">
       <div class="s3-eyebrow sm">How GridPeer works</div>
       <div class="s3-head sg">Metering. Financing. Ownership. The platform solar adoption was always missing.</div>
-      <p class="s3-body">GridPeer is a complete metering, financing, and registration platform. We don't just connect neighbours — we finance new solar systems for communities who couldn't afford one, sub-meter tenants across estates, and handle every compliance step under the Electricity Act 2023. Every household we bring online displaces a generator. At scale, that is a structural shift in Nigeria's emissions baseline.</p>
+      <p class="s3-body">GridPeer is a complete metering, financing, and registration platform. We finance new solar systems for communities who couldn't afford one, sub-meter tenants across estates, and handle every compliance step under the Electricity Act 2023. Every household we bring online displaces a generator. At scale, that is a structural shift in Nigeria's emissions baseline.</p>
       <div class="feature-list">
         <div class="feat">
           <div class="feat-ico">
@@ -1084,7 +1097,7 @@ footer{
     <div class="s6-left">
       <div class="section-eyebrow sm">The Numbers</div>
       <div class="s2-headline sg" style="font-size:clamp(24px,2.5vw,36px);">We displace CO₂ by being the commercial pipeline solar adoption never had.</div>
-      <p>Every projection shown with its working — no historical data claimed. Year 1 is a deliberate pilot designed to generate one real CAC and one real default rate before committing capital to multi-city replication. At 10,000 active clusters, GridPeer displaces 150,000 tonnes of CO₂ annually. No subsidy required.</p>
+      <p>Every projection shown with its working. No historical data claimed. Year 1 is a deliberate pilot designed to generate one real CAC and one real default rate before committing capital to multi-city replication. At 10,000 active clusters, GridPeer displaces 150,000 tonnes of CO₂ annually. No subsidy required.</p>
       <a href="#s4" class="s6-cta sg">
         See the full demo
         <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
@@ -1114,7 +1127,7 @@ footer{
     </div>
   </div>
   <!-- LTV:CAC row -->
-  <div style="padding:0 5vw 60px;display:grid;grid-template-columns:repeat(3,1fr);gap:2px;">
+  <div class="ltv-row">
     <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);padding:28px;border-radius:var(--r) 0 0 var(--r);text-align:center;">
       <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:3px;color:rgba(255,255,255,.3);margin-bottom:12px;">DIRECT RESALE</div>
       <div class="im-num sg">5.2:1</div>
@@ -1199,7 +1212,7 @@ footer{
     <!-- Mission statement -->
     <div style="margin-top:64px;padding:48px;background:var(--navy);border-radius:20px;text-align:center;">
       <div style="font-family:'Space Grotesk',sans-serif;font-size:clamp(22px,2.5vw,34px);font-weight:700;color:#fff;letter-spacing:-1px;line-height:1.2;margin-bottom:16px;">
-        Nigeria's solar is trapped on rooftops. Its demand is burning petrol next door.<br>GridPeer is the platform that meters it, finances it, and makes it safe — at every income level.
+        Nigeria's solar is trapped on rooftops. Its demand is burning petrol next door.<br>GridPeer is the platform that meters it, finances it, and makes it safe at every income level.
       </div>
       <div style="font-size:15px;color:rgba(255,255,255,.4);max-width:500px;margin:0 auto;">Lagos pilot phase in progress. We are not waiting for the grid to improve. We are building what comes next.</div>
     </div>
@@ -1341,6 +1354,36 @@ document.querySelectorAll('[data-stat]').forEach(function(el){ statObs.observe(e
 function openHubLightbox(){document.getElementById('hub-lightbox').classList.add('open');document.body.style.overflow='hidden';}
 function closeHubLightbox(){document.getElementById('hub-lightbox').classList.remove('open');document.body.style.overflow='';}
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeHubLightbox();});
+
+/* ---- TYPEWRITER (hero h1) ---- */
+(function(){
+  var el = document.getElementById('hero-h1');
+  if(!el) return;
+  var parts = [
+    {t:'Switch off\nyour ', a:false},
+    {t:'generator.', a:true},
+    {t:'\nFor good.', a:false}
+  ];
+  var spanEls = [];
+  parts.forEach(function(p){
+    var sp = document.createElement('span');
+    if(p.a) sp.className = 'accent';
+    el.appendChild(sp);
+    spanEls.push(sp);
+  });
+  var pi = 0, ci = 0;
+  function typeNext(){
+    if(pi >= parts.length){ el.classList.remove('typing'); return; }
+    var char = parts[pi].t[ci];
+    if(char === '\n') spanEls[pi].appendChild(document.createElement('br'));
+    else spanEls[pi].appendChild(document.createTextNode(char));
+    ci++;
+    if(ci >= parts[pi].t.length){ pi++; ci = 0; }
+    if(pi < parts.length) setTimeout(typeNext, 55);
+    else setTimeout(function(){ el.classList.remove('typing'); }, 400);
+  }
+  setTimeout(typeNext, 600);
+})();
 </script>
 
 <!-- HUB LIGHTBOX MODAL -->
