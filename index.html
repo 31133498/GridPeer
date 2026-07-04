@@ -89,7 +89,7 @@ section.off{background:var(--off);}
 /* ====================================
    S1 HERO
 ==================================== */
-#s1{background:#fff;flex-direction:row;align-items:flex-start;gap:0;padding:0;}
+#s1{background:#fff;flex-direction:row;align-items:flex-start;gap:0;padding-top:64px;}
 .hero-left{
   flex:1;padding:120px 5vw 80px;
   display:flex;flex-direction:column;justify-content:center;max-width:680px;
@@ -349,7 +349,7 @@ h1 .accent{color:var(--gold);}
 .metric-val.green{color:var(--green);}
 .metric-sub{font-size:12px;color:rgba(255,255,255,.3);}
 .bat-bar{height:5px;background:rgba(255,255,255,.1);border-radius:3px;margin-top:8px;overflow:hidden;}
-.bat-fill{height:100%;background:var(--green);border-radius:3px;}
+.bat-fill{height:100%;background:var(--green);border-radius:3px;transition:width 1.2s ease;}
 /* Connections table */
 .app-section-label{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35);margin:20px 0 12px;}
 .conn-table{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;overflow:hidden;}
@@ -647,7 +647,7 @@ footer{
     Usage: position:absolute, object-fit:cover, fill the entire right half of the hero section.
     Aspect: landscape, minimum 1200x800px
     -->
-    <img src="images/hero.png" style="position:absolute;top:64px;left:0;right:0;bottom:0;width:100%;height:calc(100% - 64px);object-fit:cover;border-radius:inherit;">
+    <img src="images/hero.png" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:inherit;">
   </div>
 </section>
 
@@ -848,13 +848,13 @@ footer{
           <div class="metrics-row">
             <div class="metric-card">
               <div class="metric-label sm">Battery Level</div>
-              <div class="metric-val green">92%</div>
-              <div class="bat-bar"><div class="bat-fill" style="width:92%"></div></div>
+              <div class="metric-val green" data-dash="92" data-dash-suffix="%">0%</div>
+              <div class="bat-bar"><div class="bat-fill" id="bat-fill-main" style="width:0%"></div></div>
               <div class="metric-sub">Estimated 4.2 kWh remaining</div>
             </div>
             <div class="metric-card">
               <div class="metric-label sm">Earned This Month</div>
-              <div class="metric-val gold">47,520</div>
+              <div class="metric-val gold" data-dash="47520" data-dash-comma>0</div>
               <div class="metric-sub">From 3 active connections</div>
             </div>
             <div class="metric-card">
@@ -870,17 +870,17 @@ footer{
             </div>
             <div class="ct-row">
               <div class="ct-name">Emeka Okafor</div>
-              <div>4.2 kWh</div><div>1,200</div><div>18,400</div>
+              <div data-dash="4.2" data-dash-suffix=" kWh">0</div><div data-dash="1200" data-dash-comma>0</div><div data-dash="18400" data-dash-comma>0</div>
               <div class="ct-online"><span class="status-pulse"></span> Online</div>
             </div>
             <div class="ct-row">
               <div class="ct-name">Chioma Adeyemi</div>
-              <div>3.1 kWh</div><div>980</div><div>14,700</div>
+              <div data-dash="3.1" data-dash-suffix=" kWh">0</div><div data-dash="980" data-dash-comma>0</div><div data-dash="14700" data-dash-comma>0</div>
               <div class="ct-online"><span class="status-pulse"></span> Online</div>
             </div>
             <div class="ct-row">
               <div class="ct-name">Mr. Bello</div>
-              <div>2.8 kWh</div><div>540</div><div>12,200</div>
+              <div data-dash="2.8" data-dash-suffix=" kWh">0</div><div data-dash="540" data-dash-comma>0</div><div data-dash="12200" data-dash-comma>0</div>
               <div class="ct-online"><span class="status-pulse"></span> Online</div>
             </div>
           </div>
@@ -919,17 +919,17 @@ footer{
           <div class="metrics-row">
             <div class="metric-card">
               <div class="metric-label sm">Wallet Balance</div>
-              <div class="metric-val" style="font-size:30px;">1,200</div>
+              <div class="metric-val" style="font-size:30px;" data-dash="1200" data-dash-comma>0</div>
               <div class="metric-sub">Approximately 6 days remaining</div>
             </div>
             <div class="metric-card">
               <div class="metric-label sm">Used Today</div>
-              <div class="metric-val gold" style="font-size:30px;">4.2 kWh</div>
+              <div class="metric-val gold" style="font-size:30px;" data-dash="4.2" data-dash-suffix=" kWh">0</div>
               <div class="metric-sub">Cost today: 840</div>
             </div>
             <div class="metric-card">
               <div class="metric-label sm">This Month</div>
-              <div class="metric-val" style="font-size:30px;">18,400</div>
+              <div class="metric-val" style="font-size:30px;" data-dash="18400" data-dash-comma>0</div>
               <div class="metric-sub">vs 150,000 on petrol generator</div>
             </div>
           </div>
@@ -1232,6 +1232,37 @@ var countObs = new IntersectionObserver(function(entries){
   });
 },{threshold:0.5});
 document.querySelectorAll('[data-count]').forEach(function(el){ countObs.observe(el); });
+
+/* ---- DASHBOARD ANIMATION (s4) ---- */
+function fmtDash(n, comma, isDecimal){
+  if(comma) return Math.round(n).toLocaleString('en-NG');
+  if(isDecimal) return n.toFixed(1);
+  return Math.round(n).toString();
+}
+function animateDash(el){
+  var target = parseFloat(el.dataset.dash);
+  var suffix = el.dataset.dashSuffix || '';
+  var comma = el.hasAttribute('data-dash-comma');
+  var isDecimal = target % 1 !== 0;
+  var duration = 1400; var steps = 60; var step = target / steps; var cur = 0;
+  var t = setInterval(function(){
+    cur = Math.min(cur + step, target);
+    el.textContent = fmtDash(cur, comma, isDecimal) + suffix;
+    if(cur >= target) clearInterval(t);
+  }, duration / steps);
+}
+var dashTriggered = false;
+var dashObs = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(!e.isIntersecting || dashTriggered) return;
+    dashTriggered = true;
+    document.querySelectorAll('[data-dash]').forEach(function(el){ animateDash(el); });
+    var bar = document.getElementById('bat-fill-main');
+    if(bar) setTimeout(function(){ bar.style.width='92%'; }, 200);
+  });
+},{threshold:0.3});
+var s4el = document.getElementById('s4');
+if(s4el) dashObs.observe(s4el);
 
 /* ---- STAT COUNTERS (s2) ---- */
 var statObs = new IntersectionObserver(function(entries){
