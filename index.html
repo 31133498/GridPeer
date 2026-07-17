@@ -744,10 +744,15 @@ p,.s3-head,.hw-head,.s2-headline,.hw-sub,.s3-body{overflow-wrap:break-word;word-
     <a href="#s6">Impact</a>
     <a href="#s7">Team</a>
   </div>
-  <a href="#s4" class="nav-cta">
-    See the Demo
-    <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-  </a>
+  <div style="display:flex;gap:10px;align-items:center;">
+    <a href="#s4" class="nav-cta" style="background:transparent;border:1.5px solid rgba(13,27,42,.15);color:var(--navy);">
+      See the Demo
+    </a>
+    <button onclick="openModal('waitlist')" class="nav-cta">
+      Join Waitlist
+      <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </button>
+  </div>
 </nav>
 
 <!-- DOT NAV -->
