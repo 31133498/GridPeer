@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>GridPeer — My Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+:root{
+  --gold:#E9A520;--gold-d:#C78A14;--gold-bg:#FFFBEB;
+  --navy:#0D1B2A;--navy2:#152233;--navy3:#1E3045;
+  --off:#F9F8F5;--border:#E5E1D8;
+  --text:#111827;--mid:#374151;--dim:#6B7280;--faint:#9CA3AF;
+  --green:#16A34A;--green-bg:#DCFCE7;
+}
+html,body{font-family:'Inter',sans-serif;background:var(--off);min-height:100vh;overflow-x:hidden;}
+body{max-width:430px;margin:0 auto;position:relative;}
+
+/* ---- TOPBAR ---- */
+.topbar{background:var(--navy);padding:52px 20px 24px;}
+.topbar-r{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;}
+.logo-w{display:flex;align-items:center;gap:9px;}
+.logo-mark{width:33px;height:33px;background:var(--gold);border-radius:8px;display:flex;align-items:center;justify-content:center;}
+.logo-mark svg{width:19px;height:19px;stroke:var(--navy);stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+.logo-txt{font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:700;color:#fff;}
+.logo-txt span{color:var(--gold);}
+.notif-w{position:relative;}
+.notif-btn{width:38px;height:38px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;}
+.notif-btn svg{width:18px;height:18px;stroke:rgba(255,255,255,.8);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+.notif-dot{width:9px;height:9px;background:var(--gold);border-radius:50%;border:2px solid var(--navy);position:absolute;top:3px;right:3px;}
+.welcome-lbl{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:4px;}
+.welcome-name{font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:700;color:#fff;}
+.status-pill{display:inline-flex;align-items:center;gap:7px;margin-top:12px;background:rgba(74,222,128,.12);border:1px solid rgba(74,222,128,.25);border-radius:100px;padding:5px 14px;font-size:11px;font-weight:700;color:#4ADE80;font-family:'Space Mono',monospace;letter-spacing:.8px;text-transform:uppercase;}
+.pulse-dot{width:6px;height:6px;background:#4ADE80;border-radius:50%;animation:blink 2s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.3;}}
+
+/* ---- CONTENT ---- */
+.content{padding:16px 16px 140px;display:flex;flex-direction:column;gap:12px;}
+
+/* ---- CARDS ---- */
+.card{background:#fff;border-radius:16px;padding:16px;border:1px solid var(--border);}
+.card-lbl{font-family:'Space Mono',monospace;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--faint);margin-bottom:12px;}
+
+/* ---- SUCCESS BANNER ---- */
+.success-banner{background:linear-gradient(135deg,#052e16 0%,#14532d 100%);border:1px solid rgba(74,222,128,.25);border-radius:16px;padding:16px;display:none;}
+.success-banner.show{display:block;}
+.success-top{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.success-check{width:40px;height:40px;background:rgba(74,222,128,.18);border:1px solid rgba(74,222,128,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.success-check svg{width:20px;height:20px;stroke:#4ADE80;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+.success-title{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;color:#4ADE80;}
+.success-sub{font-size:11px;color:rgba(255,255,255,.45);margin-top:2px;}
+.success-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.success-stat{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:10px 12px;}
+.ss-val{font-family:'Space Mono',monospace;font-size:16px;font-weight:700;color:#fff;}
+.ss-lbl{font-size:10px;color:rgba(255,255,255,.35);letter-spacing:.5px;margin-top:2px;}
+
+/* ---- CONNECTION CARD ---- */
+.conn-card{background:var(--navy);border-color:transparent;}
+.conn-card .card-lbl{color:rgba(255,255,255,.3);}
+.conn-head{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.solar-ico{width:46px;height:46px;background:var(--gold);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.solar-ico svg{width:26px;height:26px;stroke:var(--navy);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+.conn-name{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;color:#fff;line-height:1.2;}
+.conn-loc{font-size:11px;color:rgba(255,255,255,.4);margin-top:2px;}
+.conn-status{display:flex;align-items:center;gap:8px;background:rgba(74,222,128,.12);border:1px solid rgba(74,222,128,.22);border-radius:8px;padding:8px 12px;margin-bottom:14px;}
+.conn-status svg{width:14px;height:14px;stroke:#4ADE80;stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+.conn-status-txt{font-family:'Space Mono',monospace;font-size:10px;font-weight:700;color:#4ADE80;letter-spacing:.8px;}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
+.stat-box{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:10px 8px;text-align:center;}
+.stat-val{font-family:'Space Mono',monospace;font-size:24px;font-weight:700;color:var(--gold);}
+.stat-lbl{font-size:9px;color:rgba(255,255,255,.35);letter-spacing:.8px;text-transform:uppercase;margin-top:3px;}
+.power-badge{display:none;align-items:center;gap:10px;background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.25);border-radius:12px;padding:12px 14px;margin-top:10px;}
+.power-badge.show{display:flex;}
+.power-badge svg{width:20px;height:20px;stroke:#4ADE80;stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+.pb-label{font-family:'Space Mono',monospace;font-size:11px;font-weight:700;color:#4ADE80;letter-spacing:.5px;}
+.pb-sub{font-size:11px;color:rgba(255,255,255,.35);margin-top:1px;}
+
+/* ---- BATTERY ---- */
+.bat-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+.bat-pct{font-family:'Space Mono',monospace;font-size:32px;font-weight:700;color:var(--green);}
+.bat-right{text-align:right;}
+.bat-status{font-size:13px;font-weight:600;color:var(--mid);}
+.bat-source{font-size:11px;color:var(--faint);margin-top:2px;}
+.bat-bg{height:10px;background:#F3F4F6;border-radius:100px;overflow:hidden;}
+.bat-fill{height:100%;background:linear-gradient(90deg,#15803D 0%,#22C55E 60%,#4ADE80 100%);border-radius:100px;width:0%;transition:width 1.3s cubic-bezier(.4,0,.2,1);}
+
+/* ---- WALLET ---- */
+.wallet-row{display:flex;align-items:center;justify-content:space-between;}
+.w-lbl{font-size:12px;color:var(--dim);margin-bottom:4px;}
+.w-amount{font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:700;color:var(--text);}
+.w-sub{font-size:12px;color:var(--faint);margin-top:2px;}
+.wallet-ico{width:52px;height:52px;background:var(--gold-bg);border:1px solid rgba(233,165,32,.2);border-radius:14px;display:flex;align-items:center;justify-content:center;}
+.wallet-ico svg{width:28px;height:28px;stroke:var(--gold-d);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+
+/* ---- ACTIVITY ---- */
+.act-item{display:flex;align-items:center;gap:12px;padding:10px 0;}
+.act-item+.act-item{border-top:1px solid var(--border);}
+.act-ico{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.act-ico.green{background:var(--green-bg);}
+.act-ico.green svg{stroke:var(--green);}
+.act-ico.gold{background:var(--gold-bg);}
+.act-ico.gold svg{stroke:var(--gold-d);}
+.act-ico svg{width:16px;height:16px;stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+.act-info{flex:1;}
+.act-title{font-size:13px;font-weight:600;color:var(--text);}
+.act-time{font-size:11px;color:var(--faint);margin-top:2px;}
+.act-amt{font-family:'Space Mono',monospace;font-size:12px;font-weight:700;}
+.act-amt.g{color:var(--green);}
+.act-amt.d{color:var(--dim);}
+
+/* ---- TOPUP BAR ---- */
+.topup-bar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:rgba(255,255,255,.98);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid var(--border);padding:12px 16px 30px;z-index:200;}
+.topup-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:18px;background:var(--gold);border:none;border-radius:14px;font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;color:var(--navy);text-decoration:none;cursor:pointer;transition:background .15s,transform .1s;box-shadow:0 4px 24px rgba(233,165,32,.45);}
+.topup-btn:active{transform:scale(.97);background:var(--gold-d);}
+.topup-btn svg{width:22px;height:22px;stroke:var(--navy);stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+.topup-btn.paid{background:var(--green);color:#fff;box-shadow:0 4px 24px rgba(22,163,74,.35);}
+.topup-btn.paid svg{stroke:#fff;}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-r">
+    <div class="logo-w">
+      <div class="logo-mark">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="2.5"/><line x1="12" y1="7.5" x2="12" y2="13"/><line x1="12" y1="13" x2="7.5" y2="18.5"/><line x1="12" y1="13" x2="16.5" y2="18.5"/><circle cx="7" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/></svg>
+      </div>
+      <div class="logo-txt">Grid<span>Peer</span></div>
+    </div>
+    <div class="notif-w">
+      <div class="notif-btn">
+        <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+      </div>
+      <div class="notif-dot"></div>
+    </div>
+  </div>
+  <div class="welcome-lbl">Seeker Account</div>
+  <div class="welcome-name">Olawale Babs</div>
+  <div class="status-pill">
+    <div class="pulse-dot"></div>
+    Grid Connected
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- PAYMENT SUCCESS BANNER — shown after payment -->
+  <div class="success-banner" id="successBanner">
+    <div class="success-top">
+      <div class="success-check">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div>
+        <div class="success-title">Payment Confirmed!</div>
+        <div class="success-sub">5kWh loaded — your power line is now active</div>
+      </div>
+    </div>
+    <div class="success-grid">
+      <div class="success-stat">
+        <div class="ss-val">5kWh</div>
+        <div class="ss-lbl">Energy Loaded</div>
+      </div>
+      <div class="success-stat">
+        <div class="ss-val">₦1,000</div>
+        <div class="ss-lbl">Amount Paid</div>
+      </div>
+      <div class="success-stat">
+        <div class="ss-val">Active</div>
+        <div class="ss-lbl">Line Status</div>
+      </div>
+      <div class="success-stat">
+        <div class="ss-val">Now</div>
+        <div class="ss-lbl">Valid From</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONNECTION CARD -->
+  <div class="card conn-card">
+    <div class="card-lbl">Your Grid Source</div>
+    <div class="conn-head">
+      <div class="solar-ico">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </div>
+      <div>
+        <div class="conn-name">Adeola Solar System</div>
+        <div class="conn-loc">12 Abeokuta Street, Yaba · 0.4 km away</div>
+      </div>
+    </div>
+    <div class="conn-status">
+      <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      <div class="conn-status-txt">STATUS: ACTIVE — LIVE CONNECTION</div>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-box">
+        <div class="stat-val">3</div>
+        <div class="stat-lbl">Lines</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-val">0</div>
+        <div class="stat-lbl">Faults</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-val">92%</div>
+        <div class="stat-lbl">Battery</div>
+      </div>
+    </div>
+    <div class="power-badge" id="powerBadge">
+      <svg viewBox="0 0 24 24"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      <div>
+        <div class="pb-label">POWER LINE ACTIVE</div>
+        <div class="pb-sub">5kWh available · Line 1, 2, 3</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BATTERY CARD -->
+  <div class="card">
+    <div class="card-lbl">Source Battery Level</div>
+    <div class="bat-row">
+      <div class="bat-pct">92%</div>
+      <div class="bat-right">
+        <div class="bat-status">Fully Available</div>
+        <div class="bat-source">Adeola Solar · Updated 4 min ago</div>
+      </div>
+    </div>
+    <div class="bat-bg"><div class="bat-fill" id="batFill"></div></div>
+  </div>
+
+  <!-- WALLET CARD -->
+  <div class="card">
+    <div class="card-lbl">My Wallet</div>
+    <div class="wallet-row">
+      <div>
+        <div class="w-lbl">Available Balance</div>
+        <div class="w-amount" id="walletAmt">0.0 kWh</div>
+        <div class="w-sub" id="walletSub">Top up to activate your power line</div>
+      </div>
+      <div class="wallet-ico">
+        <svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="2"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACTIVITY CARD -->
+  <div class="card">
+    <div class="card-lbl">Recent Activity</div>
+
+    <!-- New activity injected after payment -->
+    <div id="newAct" style="display:none;">
+      <div class="act-item">
+        <div class="act-ico green">
+          <svg viewBox="0 0 24 24"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
+        <div class="act-info">
+          <div class="act-title">5kWh Loaded — GridPeer</div>
+          <div class="act-time">Just now</div>
+        </div>
+        <div class="act-amt g">+5kWh</div>
+      </div>
+    </div>
+
+    <div class="act-item">
+      <div class="act-ico green">
+        <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      </div>
+      <div class="act-info">
+        <div class="act-title">Connected to Adeola Solar</div>
+        <div class="act-time">Today, 08:14 AM</div>
+      </div>
+      <div class="act-amt g">Active</div>
+    </div>
+    <div class="act-item">
+      <div class="act-ico gold">
+        <svg viewBox="0 0 24 24"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
+      <div class="act-info">
+        <div class="act-title">3kWh Consumed</div>
+        <div class="act-time">Yesterday, 7:42 PM</div>
+      </div>
+      <div class="act-amt d">-3kWh</div>
+    </div>
+    <div class="act-item">
+      <div class="act-ico green">
+        <svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="2"/></svg>
+      </div>
+      <div class="act-info">
+        <div class="act-title">Wallet Top Up</div>
+        <div class="act-time">Yesterday, 3:10 PM</div>
+      </div>
+      <div class="act-amt g">+₦2,000</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FIXED TOP UP BAR -->
+<div class="topup-bar">
+  <a class="topup-btn" id="topupBtn"
+     href="https://wa.me/2347084708292?text=I+want+to+top+up+my+GridPeer+wallet"
+     target="_blank">
+    <svg viewBox="0 0 24 24"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+    Top Up Grid
+  </a>
+</div>
+
+<!-- PAYSTACK INLINE (optional — add your test key and call payWithPaystack()) -->
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<script>
+var PAYSTACK_KEY = 'pk_test_REPLACE_WITH_YOUR_KEY'; // <-- paste your test public key here
+
+function payWithPaystack() {
+  var handler = PaystackPop.setup({
+    key: PAYSTACK_KEY,
+    email: 'daddy@gridpeer.com',
+    amount: 100000, // ₦1,000 in kobo
+    currency: 'NGN',
+    ref: 'GP-' + Date.now(),
+    metadata: {
+      custom_fields: [{
+        display_name: 'Product',
+        variable_name: 'product',
+        value: '5kWh GridPeer Top-Up'
+      }]
+    },
+    callback: function(response) {
+      showPaidState();
+    },
+    onClose: function() {}
+  });
+  handler.openIframe();
+}
+
+function showPaidState() {
+  document.getElementById('successBanner').classList.add('show');
+  document.getElementById('powerBadge').classList.add('show');
+  document.getElementById('walletAmt').textContent = '5.0 kWh';
+  document.getElementById('walletSub').textContent = 'Power line is now active';
+  document.getElementById('newAct').style.display = 'block';
+
+  var btn = document.getElementById('topupBtn');
+  btn.classList.add('paid');
+  btn.innerHTML = '<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Power Line Active';
+  btn.href = '#';
+  btn.removeAttribute('target');
+
+  // Scroll to top to show success banner
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+// Detect paid state from URL params (Paystack callback or manual ?paid=1)
+(function() {
+  var p = new URLSearchParams(window.location.search);
+  if (p.get('paid') === '1' || p.get('paid') === 'true' || p.get('trxref') || p.get('reference')) {
+    showPaidState();
+  }
+})();
+
+// Animate battery bar on load
+window.addEventListener('load', function() {
+  setTimeout(function() {
+    document.getElementById('batFill').style.width = '92%';
+  }, 400);
+});
+</script>
+</body>
+</html>
